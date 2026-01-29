@@ -1,5 +1,5 @@
 # 构建前端资源
-FROM docker.1ms.run/library/node:18-bookworm-slim AS fe-builder
+FROM docker.1ms.run/library/node:20.19.6-bookworm-slim AS fe-builder
 
 WORKDIR /mayfly
 
