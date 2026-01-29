@@ -1,5 +1,5 @@
 # 构建前端资源
-FROM m.daocloud.io/docker.io/node:18-bookworm-slim AS fe-builder
+FROM docker.1ms.run/library/node:18-bookworm-slim AS fe-builder
 
 WORKDIR /mayfly
 
@@ -10,7 +10,7 @@ RUN yarn config set registry 'https://registry.npmmirror.com' && \
     yarn build
 
 # 构建后端资源
-FROM m.daocloud.io/docker.io/golang:1.23 AS be-builder
+FROM docker.1ms.run/library/golang:1.23.12 AS be-builder
 
 ENV GOPROXY https://goproxy.cn
 WORKDIR /mayfly
@@ -27,7 +27,7 @@ RUN GO111MODULE=on CGO_ENABLED=0 GOOS=linux \
     go build -a -ldflags=-w \
     -o mayfly-go main.go
 
-FROM m.daocloud.io/docker.io/alpine:3.20.2
+FROM docker.1ms.run/library/alpine:3.20.2
 
 ARG TZ=Asia/Shanghai
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
