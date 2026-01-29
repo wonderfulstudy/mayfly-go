@@ -5,9 +5,9 @@ WORKDIR /mayfly
 
 COPY frontend .
 
-RUN yarn config set registry 'https://registry.npmmirror.com' && \
-    yarn install && \
-    yarn build
+RUN npm install -g pnpm \
+    && pnpm i --registry=https://registry.npmmirror.com \
+    && pnpm run build
 
 # 构建后端资源
 FROM docker.1ms.run/library/golang:1.23.12 AS be-builder
