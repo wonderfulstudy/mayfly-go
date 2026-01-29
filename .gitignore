@@ -21,6 +21,8 @@
 out
 
 server/docs/docker-compose
-server/config.yml
 server/ip2region.xdb
 mayfly-go.log
+server/log
+server/mayfly_rsa
+server/mayfly_rsa.pub
